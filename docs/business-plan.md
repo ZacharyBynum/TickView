@@ -79,70 +79,140 @@ to paid tiers as user count grows.
 
 ## 2. Financial Projections (24 Months)
 
+### A Note on Honesty
+
+Most SaaS projections you see online are survivorship bias. The founders who
+write "How I Hit $10K MRR in 6 Months" are the 5% — the other 95% quietly
+shut down. Here's what the actual data says:
+
+- **70% of micro-SaaS businesses earn under $1,000/month** (study of 1,000+
+  micro-SaaS businesses, 2025)
+- **30% never reach $1K MRR and abandon the project**
+- **Median time to $1M ARR is 2 years 9 months** — for companies that make it
+- **Median bootstrapped SaaS growth: 23% annually** (SaaS Capital, 2025)
+- Jigsaw Trading, a well-established niche futures tool, has ~6,000 users
+  **after many years in market**
+
+The projections below use three scenarios. The "likely" scenario is what
+happens if the product is decent and you show up consistently. Not viral.
+Not lucky. Just decent and consistent.
+
 ### Assumptions
 
-- Average revenue per user (ARPU): $18.40/month (blended across tiers)
-- Monthly churn: 6% (months 1–6), 5% (months 7–12), 4% (months 13–24)
-- Free-to-paid conversion: 8% of free signups
+- ARPU: $18.40/month (blended across tiers)
+- Monthly churn: 8% (months 1–6), 6% (months 7–12), 5% (months 13–24)
+- Free-to-paid conversion: 4–6% of free signups (not the 8–12% SaaS blogs
+  claim — that's for products people already know they need, like email tools)
 - Stripe fees: 2.9% + $0.30 per transaction
-- Infrastructure scales with users (see cost model below)
-- No paid advertising in first 6 months (organic only)
+- No paid advertising first 9 months
+- Most growth comes from 2–3 organic channels that work, not all of them
+- There will be months where nothing grows and you question everything
 
-### Monthly Projections
+### Scenario A: "Likely" (60% probability)
 
-| Month | Free Users | Paying Users | MRR | Monthly Costs | Net Profit | Cumulative |
+Slow, grinding growth. Some months are flat. A few Reddit posts land. Most
+don't. You're building in a niche of a niche (futures traders who want
+practice tools — not all traders, not all futures traders, just the ones
+who actively seek simulation).
+
+| Month | Free Users | Paying | MRR | Costs | Net | Cumulative |
 |---|---|---|---|---|---|---|
-| 1 | 50 | 5 | $92 | $180 | -$88 | -$88 |
-| 2 | 120 | 12 | $221 | $190 | $31 | -$57 |
-| 3 | 220 | 25 | $460 | $200 | $260 | $203 |
-| 4 | 350 | 42 | $773 | $220 | $553 | $756 |
-| 5 | 500 | 60 | $1,104 | $240 | $864 | $1,620 |
-| 6 | 700 | 85 | $1,564 | $270 | $1,294 | $2,914 |
-| 7 | 950 | 115 | $2,116 | $310 | $1,806 | $4,720 |
-| 8 | 1,200 | 145 | $2,668 | $340 | $2,328 | $7,048 |
-| 9 | 1,500 | 180 | $3,312 | $370 | $2,942 | $9,990 |
-| 10 | 1,800 | 215 | $3,956 | $400 | $3,556 | $13,546 |
-| 11 | 2,100 | 255 | $4,692 | $430 | $4,262 | $17,808 |
-| 12 | 2,500 | 300 | $5,520 | $470 | $5,050 | $22,858 |
-| 13 | 2,900 | 350 | $6,440 | $510 | $5,930 | $28,788 |
-| 14 | 3,300 | 400 | $7,360 | $540 | $6,820 | $35,608 |
-| 15 | 3,700 | 450 | $8,280 | $570 | $7,710 | $43,318 |
-| 16 | 4,100 | 500 | $9,200 | $600 | $8,600 | $51,918 |
-| 17 | 4,500 | 545 | $10,028 | $620 | $9,408 | $61,326 |
-| 18 | 4,900 | 590 | $10,856 | $650 | $10,206 | $71,532 |
-| 19 | 5,300 | 630 | $11,592 | $670 | $10,922 | $82,454 |
-| 20 | 5,700 | 670 | $12,328 | $690 | $11,638 | $94,092 |
-| 21 | 6,100 | 710 | $13,064 | $710 | $12,354 | $106,446 |
-| 22 | 6,500 | 750 | $13,800 | $730 | $13,070 | $119,516 |
-| 23 | 6,900 | 790 | $14,536 | $750 | $13,786 | $133,302 |
-| 24 | 7,300 | 830 | $15,272 | $770 | $14,502 | $147,804 |
+| 1 | 20 | 0 | $0 | $150 | -$150 | -$150 |
+| 2 | 40 | 2 | $37 | $150 | -$113 | -$263 |
+| 3 | 70 | 4 | $74 | $160 | -$86 | -$349 |
+| 4 | 100 | 7 | $129 | $160 | -$31 | -$380 |
+| 5 | 130 | 10 | $184 | $170 | $14 | -$366 |
+| 6 | 170 | 15 | $276 | $180 | $96 | -$270 |
+| 7 | 220 | 22 | $405 | $200 | $205 | -$65 |
+| 8 | 280 | 30 | $552 | $210 | $342 | $277 |
+| 9 | 340 | 38 | $699 | $230 | $469 | $746 |
+| 10 | 400 | 48 | $883 | $250 | $633 | $1,379 |
+| 11 | 470 | 58 | $1,067 | $260 | $807 | $2,186 |
+| 12 | 550 | 70 | $1,288 | $280 | $1,008 | $3,194 |
+| 13 | 630 | 82 | $1,509 | $300 | $1,209 | $4,403 |
+| 14 | 720 | 95 | $1,748 | $320 | $1,428 | $5,831 |
+| 15 | 810 | 110 | $2,024 | $340 | $1,684 | $7,515 |
+| 16 | 900 | 125 | $2,300 | $350 | $1,950 | $9,465 |
+| 17 | 1,000 | 140 | $2,576 | $360 | $2,216 | $11,681 |
+| 18 | 1,100 | 158 | $2,907 | $380 | $2,527 | $14,208 |
+| 19 | 1,200 | 175 | $3,220 | $390 | $2,830 | $17,038 |
+| 20 | 1,300 | 190 | $3,496 | $400 | $3,096 | $20,134 |
+| 21 | 1,400 | 210 | $3,864 | $410 | $3,454 | $23,588 |
+| 22 | 1,500 | 228 | $4,195 | $420 | $3,775 | $27,363 |
+| 23 | 1,600 | 248 | $4,563 | $430 | $4,133 | $31,496 |
+| 24 | 1,700 | 270 | $4,968 | $440 | $4,528 | $36,024 |
 
-### Key Milestones
+**Year 1 total revenue: ~$5,600**
+**Year 2 total revenue: ~$35,900**
+**Month 24 MRR: ~$5,000**
 
-| Milestone | Target | Revenue |
-|---|---|---|
-| Break even | Month 2 | $221 MRR |
-| $1K MRR | Month 5 | 60 paying users |
-| $3K MRR | Month 9 | 180 paying users |
-| $5K MRR | Month 12 | 300 paying users |
-| $10K MRR | Month 17 | 545 paying users |
-| $15K MRR | Month 24 | 830 paying users |
-| **Year 1 total revenue** | | **~$26,500** |
-| **Year 2 total revenue** | | **~$143,000** |
-| **24-month cumulative** | | **~$148,000** |
+That's $5K MRR after two full years of work. Not $15K. Not $10K. Five
+thousand. And that's if you don't quit during the 7 months where you're
+making less than a side gig at Starbucks.
 
-### Pessimistic Scenario (50% of projections)
+### Scenario B: "Slow Burn" (25% probability)
 
-| Milestone | Target |
+The product works but organic traction is weak. Content doesn't land. Growth
+is mostly word of mouth from a small group of loyal users.
+
+| Milestone | When |
 |---|---|
-| Break even | Month 4 |
-| $1K MRR | Month 10 |
-| $5K MRR | Month 20 |
-| Year 1 total revenue | ~$13,000 |
-| Year 2 total revenue | ~$70,000 |
+| First paying user | Month 3 |
+| Break even | Month 10 |
+| $1K MRR | Month 16 |
+| $2K MRR | Month 24 |
+| Year 1 total revenue | ~$2,500 |
+| Year 2 total revenue | ~$17,000 |
 
-Even in the pessimistic case, the business is profitable because costs are
-so low. You can't lose money on this model unless you have zero users.
+This is still a net-positive project because costs are so low, but it's not
+replacing income. It's beer money for 18 months before it becomes a car
+payment.
+
+### Scenario C: "Something Catches" (15% probability)
+
+A YouTube video or HN post hits with the right audience. A trading educator
+with 50K followers mentions you. You don't control if this happens — you
+just make sure the product is ready when it does.
+
+| Milestone | When |
+|---|---|
+| First paying user | Month 2 |
+| Break even | Month 3 |
+| $1K MRR | Month 6 |
+| $5K MRR | Month 12 |
+| $10K MRR | Month 20 |
+| Year 1 total revenue | ~$20,000 |
+| Year 2 total revenue | ~$90,000 |
+
+Don't plan for this. Be ready for it. The difference between Scenario A and
+Scenario C usually isn't the product — it's one piece of content that happens
+to reach the right person at the right time.
+
+### What the Comparable Says
+
+Jigsaw Trading has ~6,000 users at ~$500/year after **many years** in the
+futures trading tools niche. They're well-known, well-reviewed, and solve a
+real problem. If TickView captured 5% of Jigsaw's user base in 2 years, that
+would be 300 users at ~$20/month = **$6K MRR**. That's roughly what Scenario A
+projects and feels honest.
+
+### The Math That Actually Matters
+
+The real question isn't "how fast does this grow" — it's "can I afford to
+wait for it to grow?"
+
+| Metric | Value |
+|---|---|
+| Sunk cost to launch | ~$200–400 (GPU training + first 2 months hosting) |
+| Monthly burn before break-even | $150–200/month |
+| **Total cash at risk (months 1–8)** | **~$1,200–1,600** |
+| Hours per week (building + marketing) | 15–25 |
+| Opportunity cost | Whatever else you'd do with that time |
+
+The financial risk is genuinely low. The real cost is your time and the
+psychological toll of months 3–9 when MRR is under $500 and it feels like
+nobody cares. That's where most solo founders quit — not because the math
+is wrong, but because the silence is deafening. You know this from Spotify.
 
 ### Cost Breakdown by Phase
 
@@ -189,27 +259,36 @@ so low. You can't lose money on this model unless you have zero users.
 "Sales" for TickView means conversions, not cold calls. Nobody should feel
 sold to. The product sells itself through the free tier and word of mouth.
 
-### Conversion Funnel Targets
+### Conversion Funnel Targets (Scenario A — Likely)
 
 | Stage | Metric | Month 6 | Month 12 | Month 24 |
 |---|---|---|---|---|
-| **Visitors** (monthly unique) | Site visits | 3,000 | 8,000 | 20,000 |
-| **Free signups** | Conversion from visit | 700 (23%) | 2,500 (31%) | 7,300 (37%) |
-| **Active free** | Used product this month | 350 (50%) | 1,250 (50%) | 3,650 (50%) |
-| **Paid conversion** | Free → paid | 85 (12%) | 300 (12%) | 830 (11%) |
-| **Retained paid** | Still paying after 3 months | 65 (76%) | 240 (80%) | 690 (83%) |
+| **Visitors** (monthly unique) | Site visits | 500 | 2,000 | 5,000 |
+| **Free signups** | Conversion from visit | 170 (34%) | 550 (28%) | 1,700 (34%) |
+| **Active free** | Used product this month | 60 (35%) | 200 (36%) | 600 (35%) |
+| **Paid conversion** | Free → paid | 15 (9%) | 70 (13%) | 270 (16%) |
+| **Retained paid** | Still paying after 3 months | 10 (67%) | 52 (74%) | 216 (80%) |
 
-### Revenue per Tier (Month 12 target)
+Notes on these numbers:
+- **500 monthly visitors at month 6** is what a niche product with no ad spend
+  and sporadic organic content actually gets. Not 3,000.
+- **34% visit-to-signup** is reasonable for a free tier with no credit card.
+- **9% free-to-paid in month 6** is generous — many users try and leave.
+  This improves over time as the product gets better and word of mouth kicks in.
+- **67% 3-month retention early on** reflects that early adopters churn more
+  (product is rougher, less content, no community yet).
+
+### Revenue per Tier (Month 12 target — Scenario A)
 
 | Tier | Users | % of Paid | MRR |
 |---|---|---|---|
-| Starter ($12) | 120 | 40% | $1,440 |
-| Standard ($20) | 120 | 40% | $2,400 |
-| Pro ($35) | 60 | 20% | $2,100 |
-| **Total** | **300** | | **$5,940** |
+| Starter ($12) | 30 | 43% | $360 |
+| Standard ($20) | 28 | 40% | $560 |
+| Pro ($35) | 12 | 17% | $420 |
+| **Total** | **70** | | **$1,340** |
 
-Blended ARPU: $19.80 (close to the $18.40 planning assumption — the
-difference is rounding from tier distribution).
+Blended ARPU: $19.14. At month 12, you have 70 paying users and ~$1.3K MRR.
+That's the honest number.
 
 ### What "Good" Looks Like
 
@@ -485,92 +564,146 @@ Target response times: Tier 1 = instant, Tier 2 = <4 hours, Tier 3 = <24 hours.
 
 ## 7. Risk-Adjusted Scenarios
 
-### Scenario A: "Things Go Right" (30% probability)
+### Scenario A: "Likely" — The Grind (60% probability)
 
-Organic content hits, a YouTube video goes semi-viral in the futures
-community, Product Hunt launch lands well. You reach 500 paying users by
-month 14 instead of month 16.
-
-| Metric | Month 12 | Month 24 |
-|---|---|---|
-| Paying users | 400 | 1,200 |
-| MRR | $7,400 | $22,000 |
-| Annual revenue | $45,000 | $180,000 |
-| Monthly profit | $6,500 | $21,000 |
-
-### Scenario B: "Steady Grind" (50% probability)
-
-Growth is consistent but not explosive. You build a solid niche product that
-serves a loyal user base. This is the base case in the projections above.
+Nothing goes viral. No lucky breaks. You show up, you post, you improve the
+product. Growth is slow but real. Some months are flat. Some months you lose
+more users than you gain. But the product is good and the niche is real, so
+it compounds — eventually.
 
 | Metric | Month 12 | Month 24 |
 |---|---|---|
-| Paying users | 300 | 830 |
-| MRR | $5,520 | $15,272 |
-| Annual revenue | $26,500 | $148,000 (cumulative) |
-| Monthly profit | $5,050 | $14,502 |
+| Paying users | 70 | 270 |
+| MRR | $1,288 | $4,968 |
+| Year revenue | $5,600 | $35,900 (year 2 only) |
+| Monthly profit | $1,008 | $4,528 |
 
-### Scenario C: "Slow Burn" (20% probability)
+This is what "working" looks like for a solo-founder niche SaaS. You're not
+quitting your day job at month 12. You might be at month 30.
 
-Organic growth is slower than expected. Synthetic data quality takes longer
-to validate. You reach $5K MRR by month 20 instead of month 12.
+### Scenario B: "Slow Burn" (25% probability)
+
+Content doesn't land. The market is harder to reach than expected. Maybe
+the futures trading practice niche is smaller than you thought, or traders
+don't trust AI-generated data yet. Growth is mostly word of mouth from a
+handful of loyal users.
 
 | Metric | Month 12 | Month 24 |
 |---|---|---|
-| Paying users | 150 | 400 |
-| MRR | $2,760 | $7,360 |
-| Annual revenue | $13,000 | $70,000 (cumulative) |
-| Monthly profit | $2,300 | $6,600 |
+| Paying users | 30 | 120 |
+| MRR | $552 | $2,208 |
+| Year revenue | $2,500 | $17,000 (year 2 only) |
+| Monthly profit | $272 | $1,768 |
 
-Still profitable. Still growing. Just slower.
+Still technically profitable. But $550/month MRR at month 12 will test
+your motivation. This is where most people quit — and honestly, quitting
+might be the right call if nothing changes by month 15. The product might
+need a pivot, not more marketing.
 
-### Scenario D: "It Doesn't Work" (<5% probability)
+### Scenario C: "Something Catches" (15% probability)
 
-Synthetic data quality never reaches acceptable levels. Users try it and leave.
-You pivot to historical-data-only model or shut down.
+A YouTube video hits 50K views in the trading community. An educator with
+a following uses the product and mentions it. A HN post makes the front page.
+You don't control this. You just make sure the product is solid when it
+happens.
 
-| Trigger | Response |
+| Metric | Month 12 | Month 24 |
+|---|---|---|
+| Paying users | 250 | 700 |
+| MRR | $4,600 | $12,880 |
+| Year revenue | $20,000 | $90,000 (year 2 only) |
+| Monthly profit | $4,130 | $12,440 |
+
+This is the version that looks like the blog posts. It happens. Just not
+to most people.
+
+### Scenario D: "It Doesn't Work" (15% probability)
+
+Synthetic data quality isn't convincing. Experienced traders can tell it's
+fake and say so publicly. Or the market for practice tools is too small.
+Or you burn out during the silent months.
+
+**This is a real and significant probability. 15% is not a rounding error.**
+
+| Trigger | Honest Response |
 |---|---|
-| Churn >15%/month for 3 consecutive months | Investigate root cause; likely data quality |
-| <50 paying users at month 9 | Evaluate if synthetic approach is working; consider pivot to historical |
-| Negative community sentiment | Pause marketing; fix product; re-engage |
+| Synthetic data feels obviously fake after 2 months of iteration | Pivot to historical-only (cheaper product, still works) or shelve the AI approach |
+| <20 paying users at month 9 | Seriously evaluate whether to continue. Talk to the 20 users. If they love it, keep going. If they're lukewarm, stop. |
+| You haven't posted content in 3 weeks because you lost motivation | This is the most common failure mode. Not the tech, not the market — just running out of energy in the silence. |
+| Negative community reception | Don't fight it. Listen. If traders say it's bad, it's bad. Fix it or fold. |
 
-**Maximum downside: ~$2,000–3,000 in sunk costs** (GPU training + a few
-months of infrastructure). This is a low-risk bet.
+**Maximum financial downside: ~$1,500–2,500.** That's the real number.
+GPU training ($20–50), hosting ($150/mo x 12 months worst case = $1,800),
+domain ($12). You are not going to go broke on this. The risk is time, not
+money.
+
+### The Spotify Comparison
+
+You already know what this feels like. Music on Spotify has the same
+dynamics: near-zero marginal cost, algorithmic discovery that's opaque,
+months of work before any traction, and the psychological weight of low
+numbers. The difference here:
+
+| Factor | Spotify Music | TickView |
+|---|---|---|
+| Competition | Millions of artists | Handful of niche tools |
+| Discovery | Algorithm-dependent, opaque | SEO + community + content (you control it) |
+| Revenue per user | $0.003–0.005/stream | $12–35/month |
+| Switching cost | Zero (users just tap next) | Medium (leaderboard rank, Python scripts, saved sessions) |
+| Content creation cycle | Write → record → mix → master → release | Build feature → ship → iterate |
+| Feedback loop | Weeks/months to know if a track works | Days (users sign up or they don't) |
+
+The unit economics and feedback loops are dramatically better. The emotional
+grind is similar.
 
 ---
 
-## 8. What Success Looks Like
+## 8. What Success Looks Like (Honestly)
 
 ### Year 1
 
-- Working product with synthetic data for ES and NQ
-- 24/7 market operational
-- 300 paying users, $5K+ MRR
-- Discord community of 500+ traders
-- Established presence on Reddit and Twitter
-- All operations running through AI agents with your oversight
-- Total time commitment: 2–4 hours/day
+- Working product with synthetic data for NQ and ES
+- 24/7 market operational (even if only 5 people are trading on it)
+- 50–100 paying users, $1K–2K MRR
+- A Discord server that's quiet most days but has 20 people who actually
+  care about the product
+- 5–10 pieces of content that rank or get shared
+- You haven't quit
+- Total time commitment: 15–25 hours/week
+- **This is a side project, not a business yet.** Treat it that way.
 
 ### Year 2
 
-- 6+ contracts with synthetic data
-- Python integration live
-- Leaderboard and daily challenges active
-- 800+ paying users, $15K+ MRR
-- Content flywheel running (blog posts ranking on Google, YouTube videos
-  accumulating views)
-- Affiliate partners driving 20%+ of signups
-- Total time commitment: 1–3 hours/day (more automated)
+- 4–6 contracts with synthetic data
+- Python integration live (this is what moves it from "tool" to "platform")
+- Leaderboard active (even 50 daily challenge participants feels alive)
+- 200–400 paying users, $4K–8K MRR
+- One or two content channels that reliably bring in signups
+- A few affiliate relationships with trading educators
+- Total time commitment: 10–20 hours/week
+- **This is starting to look like a real business.** You're covering some
+  bills. Not all of them.
 
-### Year 3+ (If Everything Compounds)
+### Year 3+ (If It Keeps Compounding)
 
-- 2,000+ paying users, $30K+ MRR ($360K+ ARR)
-- Recognized name in futures trading education
-- Strategy marketplace generating network effects
-- Potential for acquisition interest from trading platform companies
-- Or: keep running as a profitable lifestyle business with 5–10 hours/week
-  of oversight
+- 500–1,000+ paying users, $10K–20K MRR ($120K–240K ARR)
+- Known in the niche but not famous. "Oh yeah, TickView, I've heard of that"
+  in r/FuturesTrading
+- Strategy marketplace starting to generate network effects
+- Could be a full-time income. Could also plateau at $5K MRR for years —
+  many niche SaaS products do, and that's fine if your costs are $400/month.
+- Potential for acquisition by a trading platform company wanting the AI
+  model and user base. Or keep it as a profitable lifestyle business.
+
+### What Failure Looks Like (So You Recognize It)
+
+- Month 6: <10 paying users and you haven't posted content in a month
+- Month 12: <30 paying users and churn is >10%/month
+- Month 18: MRR has been flat for 6 months and you dread working on it
+
+If you hit these markers, it's not a failure of character. It might mean the
+market is too small, the timing is wrong, or the product needs a different
+angle. The sunk cost is under $2,000. Walk away without guilt.
 
 ---
 
@@ -578,12 +711,14 @@ months of infrastructure). This is a low-risk bet.
 
 | Question | Answer |
 |---|---|
-| What's the entity? | Single-member LLC (Wyoming) |
+| What's the entity? | Single-member LLC (Wyoming, ~$210 to form) |
 | Who runs operations? | AI agents under your approval |
-| What's the marketing strategy? | Organic first: Reddit, Twitter, YouTube, SEO. Authentic, not salesy. |
-| What's the realistic Year 1 revenue? | $26K (base case), $13K (pessimistic), $45K (optimistic) |
-| What's the realistic Year 2 MRR? | $15K/month (base), $7K (pessimistic), $22K (optimistic) |
-| What's the max downside? | ~$2–3K in sunk costs |
-| How much time does it take? | 2–4 hours/day year 1, 1–3 hours/day year 2 |
-| When is it profitable? | Month 2 (base case), month 4 (pessimistic) |
+| What's the marketing strategy? | Organic: Reddit, Twitter, YouTube, SEO. Authentic, not salesy. |
+| What's the realistic Year 1 revenue? | **$5,600** (likely), $2,500 (slow), $20,000 (lucky) |
+| What's the realistic Month 24 MRR? | **$5,000** (likely), $2,200 (slow), $12,900 (lucky) |
+| What's the max financial downside? | ~$1,500–2,500 in sunk costs |
+| How much time does it take? | 15–25 hrs/week year 1, 10–20 hrs/week year 2 |
+| When is it profitable? | Month 5–8 (likely), month 10+ (slow) |
+| When does it replace income? | Year 2–3 if it works. Maybe never. Be honest about that. |
 | What makes it defensible? | Trained AI model + community + Python ecosystem + leaderboards |
+| What's the real risk? | Not money — time and motivation during the silent months |

@@ -572,35 +572,48 @@ momentum.
 | **Model retraining** (quarterly) | $5–15 | $0.01–0.03 |
 | **Total** | **$235–505** | **$0.47–1.01** |
 
-### Revenue Mix (500 users, month 12 target)
+### Revenue Mix — Realistic Month 12 (see business-plan.md for full projections)
 
 | Tier | Users | % | MRR |
 |---|---|---|---|
-| Free | 2,000 | — | $0 |
+| Free | 550 | — | $0 |
+| Starter ($12) | 30 | 43% | $360 |
+| Standard ($20) | 28 | 40% | $560 |
+| Pro ($35) | 12 | 17% | $420 |
+| **Total paying** | **70** | | **$1,340** |
+
+### Revenue Mix — At Scale (500 paying users, month 24–30 target)
+
+| Tier | Users | % | MRR |
+|---|---|---|---|
+| Free | 3,000+ | — | $0 |
 | Starter ($12) | 200 | 40% | $2,400 |
 | Standard ($20) | 200 | 40% | $4,000 |
 | Pro ($35) | 100 | 20% | $3,500 |
 | **Total paying** | **500** | | **$9,900** |
 
-### Margin Analysis
+### Margin Analysis (at scale)
 
-| Metric | Value |
-|---|---|
-| Monthly Revenue | $9,900 |
-| Monthly Costs | $235–505 |
-| **Monthly Profit** | **$9,395–9,665** |
-| **Gross Margin** | **95–97%** |
-| **Annual Run Rate** | **$112,740–115,980** |
+Per-user costs stay low regardless of scale. The margin structure is strong
+once you have users — the hard part is getting them.
+
+| Metric | At 70 users (Month 12) | At 500 users (Month 24–30) |
+|---|---|---|
+| Monthly Revenue | $1,340 | $9,900 |
+| Monthly Costs | $280 | $505 |
+| **Monthly Profit** | **$1,060** | **$9,395** |
+| **Gross Margin** | **79%** | **95%** |
 
 ### Break-Even Analysis
 
-| Scenario | Fixed Costs | Break-Even Users (at $20 avg) |
+| Scenario | Fixed Costs | Break-Even Users (at $18.40 avg) |
 |---|---|---|
-| Minimal (serverless) | $150/month | 8 users |
-| Standard | $350/month | 18 users |
-| Full infrastructure | $500/month | 26 users |
+| Minimal (free tiers only) | $150/month | 9 users |
+| Standard (24/7 market running) | $280/month | 16 users |
+| Full infrastructure | $500/month | 28 users |
 
-**You're profitable with fewer than 30 paying users.**
+**You're profitable with fewer than 30 paying users.** The question is how
+long it takes to get there — see business-plan.md for honest timelines.
 
 ---
 
