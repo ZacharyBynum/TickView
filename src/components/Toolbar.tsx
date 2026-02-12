@@ -49,8 +49,8 @@ export default function Toolbar({
   progress,
   onSeek,
   currentTime,
-  totalTicks,
-  currentTickIndex,
+  totalTicks: _totalTicks,
+  currentTickIndex: _currentTickIndex,
   onIndicatorsClick,
 }: ToolbarProps) {
   const [speedOpen, setSpeedOpen] = useState(false);

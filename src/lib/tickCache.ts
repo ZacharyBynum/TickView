@@ -55,7 +55,7 @@ export async function saveFile(fileName: string, file: File): Promise<void> {
 export async function loadCachedFile(): Promise<{ fileName: string; file: File } | null> {
   try {
     const db = await openDB();
-    return new Promise((resolve) => {
+    return new Promise((resolve, reject) => {
       let tx: IDBTransaction;
       try { tx = db.transaction(STORE_NAME, 'readonly'); } catch { resolve(null); return; }
       const store = tx.objectStore(STORE_NAME);
