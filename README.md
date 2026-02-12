@@ -1,74 +1,26 @@
-# React + TypeScript + Vite
-
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
-
-Currently, two official plugins are available:
-
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
-
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
-
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
-
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
 # TickView
+
+A browser-based tick replay and trading simulator. Load historical tick data, replay it at any speed, and practice trading with real-time charting and performance tracking.
+
+## Features
+
+- **Tick Replay** — Play, pause, step, and seek through historical tick data with adjustable speed (1x–100x)
+- **Multi-Timeframe Charting** — Aggregate ticks into candles from 1s up to 1h using lightweight-charts
+- **20 Technical Indicators** — Moving averages (SMA, EMA, WMA, DEMA, TEMA, HMA, VWAP), volatility (Bollinger Bands, ATR), momentum (RSI, MACD, Stochastic, CCI, Williams %R, ADX, ROC, Momentum, TRIX), and volume (MFI, OBV)
+- **Simulated Trading** — Place buy/sell orders, track open positions with live P&L, and review full trade history
+- **Performance Stats** — Win rate, profit factor, max drawdown, average win/loss, and more
+- **Drag-and-Drop Data Loading** — Drop a CSV/TXT tick file to get started instantly
+- **IndexedDB Caching** — Previously loaded files are cached for fast reload
+
+## Getting Started
+
+```bash
+npm install
+npm run dev
+```
+
+Open `http://localhost:5173` and drag in a tick data file (CSV or TXT with timestamp, price, bid, ask, volume columns).
+
+## Tech Stack
+
+React 19, TypeScript, Vite, [lightweight-charts](https://github.com/nicholastan9797/lightweight-charts) v5
