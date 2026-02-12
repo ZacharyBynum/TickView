@@ -112,6 +112,19 @@ export interface Position {
   unrealizedPnl: number;
 }
 
+export interface RoundTrip {
+  side: PositionSide;
+  entryPrice: number;
+  exitPrice: number;
+  size: number;
+  entryTime: number;
+  exitTime: number;
+  pnl: number;
+  mfe: number;  // max favorable excursion in $
+  mae: number;  // max adverse excursion in $ (negative)
+  holdingMs: number;
+}
+
 export interface TradeStats {
   totalTrades: number;
   winners: number;

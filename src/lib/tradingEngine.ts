@@ -1,4 +1,4 @@
-import type { InstrumentConfig, Position, PositionSide, Trade, TradeStats } from '../types';
+import type { InstrumentConfig, Position, PositionSide, Trade, TradeStats, RoundTrip } from '../types';
 
 const EMPTY_STATS: TradeStats = {
   totalTrades: 0,
@@ -35,6 +35,10 @@ export class TradingEngine {
   private totalHoldingTicks: number;
   private tradeCounter: number;
   private entryTickIndex: number;
+  private roundTrips: RoundTrip[];
+  private entryTimestamp: number;
+  private mfePrice: number;
+  private maePrice: number;
 
   constructor(instrument: InstrumentConfig) {
     this.instrument = instrument;
@@ -49,6 +53,10 @@ export class TradingEngine {
     this.totalHoldingTicks = 0;
     this.tradeCounter = 0;
     this.entryTickIndex = 0;
+    this.roundTrips = [];
+    this.entryTimestamp = 0;
+    this.mfePrice = 0;
+    this.maePrice = 0;
   }
 
   buy(price: number, size: number, timestamp: number, tickIndex?: number): void {
@@ -82,6 +90,15 @@ export class TradingEngine {
     const direction = this.position.side === 'long' ? 1 : -1;
     this.position.unrealizedPnl =
       (currentPrice - this.position.entryPrice) * direction * this.position.size * this.instrument.pointValue;
+
+    // Track MFE/MAE prices
+    if (this.position.side === 'long') {
+      if (currentPrice > this.mfePrice) this.mfePrice = currentPrice;
+      if (currentPrice < this.maePrice) this.maePrice = currentPrice;
+    } else {
+      if (currentPrice < this.mfePrice) this.mfePrice = currentPrice;
+      if (currentPrice > this.maePrice) this.maePrice = currentPrice;
+    }
   }
 
   getPosition(): Position {
@@ -90,6 +107,10 @@ export class TradingEngine {
 
   getTrades(): Trade[] {
     return this.trades;
+  }
+
+  getRoundTrips(): RoundTrip[] {
+    return this.roundTrips;
   }
 
   getStats(): TradeStats {
@@ -108,6 +129,10 @@ export class TradingEngine {
     this.totalHoldingTicks = 0;
     this.tradeCounter = 0;
     this.entryTickIndex = 0;
+    this.roundTrips = [];
+    this.entryTimestamp = 0;
+    this.mfePrice = 0;
+    this.maePrice = 0;
   }
 
   private openPosition(
@@ -125,6 +150,9 @@ export class TradingEngine {
         unrealizedPnl: 0,
       };
       this.entryTickIndex = tickIndex ?? 0;
+      this.entryTimestamp = timestamp;
+      this.mfePrice = price;
+      this.maePrice = price;
     } else {
       // Adding to existing position — compute weighted average entry
       const totalSize = this.position.size + size;
@@ -156,6 +184,22 @@ export class TradingEngine {
     // Update holding ticks
     const holdingTicks = (tickIndex ?? 0) - this.entryTickIndex;
     this.totalHoldingTicks += Math.max(holdingTicks, 0);
+
+    // Record round trip with MFE/MAE
+    const dir = this.position.side === 'long' ? 1 : -1;
+    const pv = this.position.size * this.instrument.pointValue;
+    this.roundTrips.push({
+      side: this.position.side,
+      entryPrice: this.position.entryPrice,
+      exitPrice: price,
+      size: this.position.size,
+      entryTime: this.entryTimestamp,
+      exitTime: timestamp,
+      pnl,
+      mfe: (this.mfePrice - this.position.entryPrice) * dir * pv,
+      mae: (this.maePrice - this.position.entryPrice) * dir * pv,
+      holdingMs: timestamp - this.entryTimestamp,
+    });
 
     // Update stats incrementally
     this.updateStats(pnl);

@@ -7,6 +7,7 @@ import type {
   ReplayState,
   Position,
   Trade,
+  RoundTrip,
   TradeStats,
   IndicatorConfig,
   IndicatorType,
@@ -73,6 +74,7 @@ export default function App() {
   // --- Trading state ---
   const [position, setPosition] = useState<Position>(EMPTY_POSITION);
   const [trades, setTrades] = useState<Trade[]>([]);
+  const [roundTrips, setRoundTrips] = useState<RoundTrip[]>([]);
   const [stats, setStats] = useState<TradeStats>(EMPTY_STATS);
   const [currentPrice, setCurrentPrice] = useState(0);
   const [slPrice, setSlPrice] = useState<number | null>(null);
@@ -247,6 +249,7 @@ export default function App() {
             const newPos = engine.getPosition();
             setPosition(newPos);
             setTrades([...engine.getTrades()]);
+            setRoundTrips([...engine.getRoundTrips()]);
             setStats(engine.getStats());
             // Clear SL/TP and entry line
             slRef.current = null; tpRef.current = null;
@@ -659,6 +662,7 @@ export default function App() {
       const pos = engine.getPosition();
       setPosition(pos);
       setTrades([...engine.getTrades()]);
+      setRoundTrips([...engine.getRoundTrips()]);
       setStats(engine.getStats());
       updateEntryLine(pos);
 
@@ -692,6 +696,7 @@ export default function App() {
       const pos = engine.getPosition();
       setPosition(pos);
       setTrades([...engine.getTrades()]);
+      setRoundTrips([...engine.getRoundTrips()]);
       setStats(engine.getStats());
       updateEntryLine(pos);
 
@@ -725,6 +730,7 @@ export default function App() {
     const pos = engine.getPosition();
     setPosition(pos);
     setTrades([...engine.getTrades()]);
+    setRoundTrips([...engine.getRoundTrips()]);
     setStats(engine.getStats());
     updateEntryLine(pos);
 
@@ -799,29 +805,27 @@ export default function App() {
   // Render: File Drop Zone
   // -------------------------------------------------------------------------
 
-  const loadingMessage = useMemo(() => {
-    const messages = [
-      'Hold on.',
-      'Working on it.',
-      'Bear with.',
-      'One sec.',
-      'Almost there. Allegedly.',
-      'Doing math.',
-      'Thinking real hard.',
-      'Please enjoy this progress bar.',
-      'Not frozen. Promise.',
-      'Wrangling rectangles.',
-      'Reading. A lot.',
-      'This part\'s boring. Sorry.',
-      'Sorting chaos.',
-      'Trust the process.',
-      'Crunching.',
-      'Getting there.',
-      'Rectangles incoming.',
-      'Hang tight.',
-    ];
-    return messages[Math.floor(Math.random() * messages.length)];
-  }, []);
+  const loadingMessages = useMemo(() => [
+    'Hold on.', 'Working on it.', 'Bear with.', 'One sec.',
+    'Almost there. Allegedly.', 'Doing math.', 'Thinking real hard.',
+    'Please enjoy this progress bar.', 'Not frozen. Promise.',
+    'Wrangling rectangles.', 'Reading. A lot.', 'This part\'s boring. Sorry.',
+    'Sorting chaos.', 'Trust the process.', 'Crunching.', 'Getting there.',
+    'Rectangles incoming.', 'Hang tight.',
+  ], []);
+  const [loadingMsgIdx, setLoadingMsgIdx] = useState(() => Math.floor(Math.random() * 18));
+  const [loadingMsgVisible, setLoadingMsgVisible] = useState(true);
+  useEffect(() => {
+    if (!isLoading) return;
+    const interval = setInterval(() => {
+      setLoadingMsgVisible(false);
+      setTimeout(() => {
+        setLoadingMsgIdx(i => (i + 1) % 18);
+        setLoadingMsgVisible(true);
+      }, 400);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, [isLoading]);
 
   if (!fileLoaded && !isLoading) {
     return (
@@ -850,47 +854,16 @@ export default function App() {
     );
   }
 
-  // -------------------------------------------------------------------------
-  // Render: Loading
-  // -------------------------------------------------------------------------
-
-  const loadingMessage = useMemo(() => {
-    const messages = [
-      'Hold on.',
-      'Working on it.',
-      'Bear with.',
-      'One sec.',
-      'Almost there. Allegedly.',
-      'Doing math.',
-      'Thinking real hard.',
-      'Please enjoy this progress bar.',
-      'Not frozen. Promise.',
-      'Wrangling rectangles.',
-      'Reading. A lot.',
-      'This part\'s boring. Sorry.',
-      'Sorting chaos.',
-      'Trust the process.',
-      'Crunching.',
-      'Getting there.',
-      'Rectangles incoming.',
-      'Hang tight.',
-    ];
-    return messages[Math.floor(Math.random() * messages.length)];
-  }, []);
-
   if (isLoading) {
     return (
       <div className="app">
         <div className="loading-overlay">
-          <div className="loading-spinner" />
-          <div className="loading-text">
-            {loadingMessage} {loadProgress.toFixed(0)}%
-          </div>
+          <div className="loading-pct">{loadProgress.toFixed(0)}%</div>
           <div className="loading-progress">
-            <div
-              className="loading-progress-fill"
-              style={{ width: `${loadProgress}%` }}
-            />
+            <div className="loading-progress-fill" style={{ width: `${loadProgress}%` }} />
+          </div>
+          <div className={`loading-msg${loadingMsgVisible ? ' visible' : ''}`}>
+            {loadingMessages[loadingMsgIdx]}
           </div>
         </div>
       </div>
