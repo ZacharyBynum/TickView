@@ -251,6 +251,40 @@
   white-space: nowrap;
 }
 
+/* --- App Body (chart-left / sidebar-right) --- */
+
+.app-body {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+}
+
+.chart-column {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  min-width: 0;
+}
+
+/* --- Trade Sidebar --- */
+
+.trade-sidebar {
+  width: 280px;
+  overflow-y: auto;
+  border-left: 1px solid var(--border-primary);
+  background: var(--bg-secondary);
+  flex-shrink: 0;
+}
+
+.trade-sidebar-section {
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--border-primary);
+}
+
+.trade-sidebar-section:last-child {
+  border-bottom: none;
+}
+
 /* --- Main Content Area --- */
 
 .main-content {
@@ -303,6 +337,9 @@
 
 .ohlcv-value {
   font-weight: 500;
+  min-width: 62px;
+  text-align: right;
+  display: inline-block;
 }
 
 .ohlcv-value.bull { color: var(--color-bull); }
@@ -629,6 +666,63 @@
 .risk-step { padding-left: 20px; display: flex; flex-direction: column; gap: 2px; }
 .risk-step-label { font-size: 10px; color: var(--text-tertiary); font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
 .risk-step-fields { display: flex; align-items: center; gap: 3px; }
+
+/* Risk unit toggle */
+.risk-unit-toggle {
+  display: flex;
+  gap: 1px;
+  background: var(--bg-primary);
+  border-radius: 3px;
+  padding: 1px;
+  margin-left: auto;
+}
+
+.risk-unit-btn {
+  padding: 1px 6px;
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--text-tertiary);
+  border-radius: 2px;
+  transition: all var(--transition-fast);
+}
+
+.risk-unit-btn:hover {
+  color: var(--text-secondary);
+}
+
+.risk-unit-btn.active {
+  background: var(--accent-blue-bg);
+  color: var(--accent-blue);
+}
+
+/* Stats expand button */
+.stats-expand-btn {
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 20px;
+  height: 20px;
+  border-radius: 3px;
+  color: var(--text-tertiary);
+  transition: all var(--transition-fast);
+}
+
+.stats-expand-btn:hover {
+  background: var(--bg-hover);
+  color: var(--text-primary);
+}
+
+/* Expandable stats */
+.stats-expanded {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.25s ease;
+}
+
+.stats-expanded.open {
+  max-height: 200px;
+}
 
 /* Stats grid */
 .stats-grid {
@@ -1381,30 +1475,6 @@
   color: var(--accent-blue);
 }
 
-/* --- Chart Settings Button --- */
-
-.chart-settings-btn {
-  position: absolute;
-  top: 8px;
-  right: 60px;
-  z-index: 10;
-  width: 28px;
-  height: 28px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 4px;
-  background: rgba(0, 0, 0, 0.4);
-  color: var(--text-tertiary);
-  transition: all var(--transition-fast);
-  cursor: pointer;
-}
-
-.chart-settings-btn:hover {
-  background: var(--bg-hover);
-  color: var(--text-primary);
-}
-
 /* --- Responsive --- */
 
 /* Tablet */
@@ -1414,6 +1484,26 @@
     height: auto;
     min-height: var(--toolbar-height);
     padding: 4px 8px;
+  }
+
+  .app-body {
+    flex-direction: column;
+  }
+
+  .trade-sidebar {
+    width: 100%;
+    border-left: none;
+    border-top: 1px solid var(--border-primary);
+    overflow-y: auto;
+    max-height: 40vh;
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .trade-sidebar-section {
+    flex: 1 1 200px;
+    border-bottom: none;
+    border-right: 1px solid var(--border-primary);
   }
 
   .trade-log {
@@ -1512,13 +1602,6 @@
     font-size: 28px;
   }
 
-  /* Chart settings */
-  .chart-settings-btn {
-    width: 34px;
-    height: 34px;
-    right: 8px;
-  }
-
   /* Indicator legend */
   .indicator-legend {
     max-width: calc(100vw - 16px);
@@ -1532,6 +1615,17 @@
     max-height: 50vh;
     overflow-y: auto;
     -webkit-overflow-scrolling: touch;
+  }
+
+  .trade-sidebar {
+    flex-direction: column;
+    max-height: 50vh;
+  }
+
+  .trade-sidebar-section {
+    flex: unset;
+    border-right: none;
+    border-bottom: 1px solid var(--border-primary);
   }
 
   .trade-panel {

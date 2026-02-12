@@ -5,7 +5,8 @@ import { ReplayEngine } from './lib/replayEngine';
 import { TradingEngine } from './lib/tradingEngine';
 import Chart from './components/Chart';
 import Toolbar from './components/Toolbar';
-import TradePanel from './components/TradePanel';
+import TradeSidebar from './components/TradeSidebar';
+import TradeLog from './components/TradeLog';
 import IndicatorPickerDialog from './components/IndicatorPickerDialog';
 import IndicatorSettingsDialog from './components/IndicatorSettingsDialog';
 import IndicatorLegend from './components/IndicatorLegend';
@@ -19,7 +20,7 @@ import { useTrading } from './hooks/useTrading';
 import { useIndicators } from './hooks/useIndicators';
 import { useBottomPanelResize } from './hooks/useBottomPanelResize';
 import { useChartColors } from './hooks/useChartColors';
-import { Settings } from 'lucide-react';
+
 
 const EMPTY_REPLAY: ReplayState = {
   isPlaying: false, speed: 1, currentTickIndex: 0,
@@ -184,41 +185,45 @@ export default function App() {
         onIndicatorsClick={() => setShowIndicatorPicker(true)}
       />
 
-      <div className="main-content">
-        <Chart
-          ref={chartRef}
-          candles={candles}
-          onCrosshairMove={undefined}
-          instrument={NQ_CONFIG}
-          indicators={indicators}
-          indicatorValues={indicatorValues}
-          chartColors={chartColors}
-          slPrice={slPrice}
-          tpPrice={tpPrice}
-          onSlChange={(p) => { slRef.current = p; setSlPrice(p); }}
-          onTpChange={(p) => { tpRef.current = p; setTpPrice(p); }}
-        />
-        <button
-          className="chart-settings-btn"
-          onClick={() => setShowChartSettings(true)}
-          title="Chart Settings"
-        >
-          <Settings size={14} />
-        </button>
-        <IndicatorLegend
-          indicators={indicators}
-          onToggle={handleToggleIndicator}
-          onEdit={(id) => {
-            const ind = indicators.find((i) => i.id === id);
-            if (ind) setEditingIndicator(ind);
-          }}
-          onRemove={handleRemoveIndicator}
-        />
-      </div>
+      <div className="app-body">
+        <div className="chart-column">
+          <div className="main-content">
+            <Chart
+              ref={chartRef}
+              candles={candles}
+              onCrosshairMove={undefined}
+              instrument={NQ_CONFIG}
+              indicators={indicators}
+              indicatorValues={indicatorValues}
+              chartColors={chartColors}
+              slPrice={slPrice}
+              tpPrice={tpPrice}
+              onSlChange={(p) => { slRef.current = p; setSlPrice(p); }}
+              onTpChange={(p) => { tpRef.current = p; setTpPrice(p); }}
+            />
+            <IndicatorLegend
+              indicators={indicators}
+              onToggle={handleToggleIndicator}
+              onEdit={(id) => {
+                const ind = indicators.find((i) => i.id === id);
+                if (ind) setEditingIndicator(ind);
+              }}
+              onRemove={handleRemoveIndicator}
+              onChartSettings={() => setShowChartSettings(true)}
+            />
+          </div>
 
-      <div className="resize-handle" onMouseDown={handleResizeMouseDown} />
-      <div className="bottom-panel" style={{ height: bottomPanelHeight, minHeight: bottomPanelHeight }}>
-        <TradePanel
+          <div className="resize-handle" onMouseDown={handleResizeMouseDown} />
+          <div className="bottom-panel" style={{ height: bottomPanelHeight, minHeight: bottomPanelHeight }}>
+            <TradeLog
+              roundTrips={roundTrips}
+              trades={trades}
+              instrument={NQ_CONFIG}
+            />
+          </div>
+        </div>
+
+        <TradeSidebar
           position={position}
           trades={trades}
           roundTrips={roundTrips}

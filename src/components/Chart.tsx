@@ -427,14 +427,15 @@ const Chart = forwardRef<ChartHandle, ChartProps>(function Chart(
         indHtml += `<span class="ohlcv-indicator"><span class="ohlcv-indicator-label">${lbl}</span><span style="color:${cfg.color}">${formatPrice(iv.value)}</span></span>`;
       }
 
+      const vs = 'min-width:62px;text-align:right;display:inline-block';
       el.innerHTML = `
         <div class="ohlcv-row">
           <span class="ohlcv-label" style="font-weight:600;color:#d1d4dc">${inst.symbol}</span>
-          <span class="ohlcv-label">O</span><span class="ohlcv-value ${cls}">${formatPrice(display.open)}</span>
-          <span class="ohlcv-label">H</span><span class="ohlcv-value ${cls}">${formatPrice(display.high)}</span>
-          <span class="ohlcv-label">L</span><span class="ohlcv-value ${cls}">${formatPrice(display.low)}</span>
-          <span class="ohlcv-label">C</span><span class="ohlcv-value ${cls}">${formatPrice(display.close)}</span>
-          <span class="ohlcv-label">V</span><span class="ohlcv-value neutral">${formatVolume(display.volume)}</span>
+          <span class="ohlcv-label">O</span><span class="ohlcv-value ${cls}" style="${vs}">${formatPrice(display.open)}</span>
+          <span class="ohlcv-label">H</span><span class="ohlcv-value ${cls}" style="${vs}">${formatPrice(display.high)}</span>
+          <span class="ohlcv-label">L</span><span class="ohlcv-value ${cls}" style="${vs}">${formatPrice(display.low)}</span>
+          <span class="ohlcv-label">C</span><span class="ohlcv-value ${cls}" style="${vs}">${formatPrice(display.close)}</span>
+          <span class="ohlcv-label">V</span><span class="ohlcv-value neutral" style="${vs}">${formatVolume(display.volume)}</span>
           <span class="ohlcv-change ${changeCls}">${formatChange(display.change, display.changePercent)}</span>
         </div>
         ${indHtml ? `<div class="ohlcv-row">${indHtml}</div>` : ''}

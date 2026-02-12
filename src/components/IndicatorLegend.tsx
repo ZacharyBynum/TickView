@@ -7,6 +7,7 @@ interface IndicatorLegendProps {
   onToggle: (id: string) => void;
   onEdit: (id: string) => void;
   onRemove: (id: string) => void;
+  onChartSettings: () => void;
 }
 
 export default function IndicatorLegend({
@@ -14,13 +15,30 @@ export default function IndicatorLegend({
   onToggle,
   onEdit,
   onRemove,
+  onChartSettings,
 }: IndicatorLegendProps) {
   const [hoveredId, setHoveredId] = useState<string | null>(null);
 
-  if (indicators.length === 0) return null;
-
   return (
     <div className="indicator-legend">
+      <div
+        className="indicator-legend-row"
+        onMouseEnter={() => setHoveredId('__chart__')}
+        onMouseLeave={() => setHoveredId(null)}
+      >
+        <span className="indicator-legend-name">Chart</span>
+        {hoveredId === '__chart__' && (
+          <div className="indicator-legend-controls">
+            <button
+              className="indicator-legend-btn"
+              onClick={onChartSettings}
+              title="Chart Settings"
+            >
+              <Settings size={12} />
+            </button>
+          </div>
+        )}
+      </div>
       {indicators.map((ind) => {
         const out = ind.output ? ` ${ind.output}` : '';
         const label = ind.period === 0
