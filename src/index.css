@@ -135,6 +135,8 @@ button,
 input[type="range"] {
   user-select: none;
   -webkit-user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
 }
 
 /* Tooltip base */

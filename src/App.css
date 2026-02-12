@@ -774,25 +774,14 @@
   align-items: center;
   justify-content: center;
   height: 100%;
-  gap: 16px;
+  gap: 12px;
 }
 
-.loading-spinner {
-  width: 40px;
-  height: 40px;
-  border: 3px solid var(--bg-active);
-  border-top-color: var(--accent-blue);
-  border-radius: 50%;
-  animation: spin 0.8s linear infinite;
-}
-
-@keyframes spin {
-  to { transform: rotate(360deg); }
-}
-
-.loading-text {
-  font-size: 14px;
-  color: var(--text-secondary);
+.loading-pct {
+  font-size: 48px;
+  font-weight: 600;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
 }
 
 .loading-progress {
@@ -807,6 +796,18 @@
   height: 100%;
   background: var(--accent-blue);
   transition: width 50ms linear;
+}
+
+.loading-msg {
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-top: 8px;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.loading-msg.visible {
+  opacity: 1;
 }
 
 /* --- Keyboard Shortcut Hints --- */
@@ -1403,6 +1404,7 @@
 
 /* --- Responsive --- */
 
+/* Tablet */
 @media (max-width: 900px) {
   .toolbar {
     flex-wrap: wrap;
@@ -1411,12 +1413,203 @@
     padding: 4px 8px;
   }
 
+  .trade-log {
+    display: none;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  /* Toolbar: compact two-row layout */
+  .toolbar {
+    flex-wrap: wrap;
+    height: auto;
+    min-height: unset;
+    padding: 4px 6px;
+    gap: 4px;
+  }
+
+  .toolbar-separator {
+    display: none;
+  }
+
+  .toolbar-symbol {
+    padding: 0 6px;
+  }
+
+  .toolbar-symbol .symbol-name {
+    font-size: 13px;
+  }
+
+  .toolbar-symbol .symbol-desc {
+    display: none;
+  }
+
+  .timeframe-group {
+    order: 10;
+    flex: 1 1 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+  }
+
+  .timeframe-group::-webkit-scrollbar {
+    display: none;
+  }
+
+  .progress-bar-container {
+    min-width: 40px;
+    padding: 0 4px;
+  }
+
+  .time-display {
+    font-size: 10px;
+    padding: 0 4px;
+  }
+
+  /* Enlarge touch targets */
+  .toolbar-btn,
+  .replay-btn {
+    min-width: 40px;
+    height: 38px;
+  }
+
+  .replay-btn svg,
+  .toolbar-btn svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .speed-selector {
+    height: 34px;
+    padding: 0 10px;
+  }
+
+  /* OHLCV overlay: smaller on mobile */
+  .ohlcv-overlay {
+    top: 4px;
+    left: 4px;
+  }
+
+  .ohlcv-row {
+    font-size: 10px;
+    gap: 4px;
+  }
+
+  .ohlcv-indicator {
+    font-size: 9px;
+  }
+
+  /* Chart watermark */
+  .chart-watermark {
+    font-size: 28px;
+  }
+
+  /* Chart settings */
+  .chart-settings-btn {
+    width: 34px;
+    height: 34px;
+    right: 8px;
+  }
+
+  /* Indicator legend */
+  .indicator-legend {
+    max-width: calc(100vw - 16px);
+    font-size: 10px;
+  }
+
+  /* Bottom panel: vertical stack */
   .bottom-panel {
-    height: 180px;
-    min-height: 180px;
+    height: auto !important;
+    min-height: unset !important;
+    max-height: 50vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  .trade-panel {
+    flex-direction: column;
+  }
+
+  .trade-panel-section + .trade-panel-section {
+    border-left: none;
+    border-top: 1px solid var(--border-primary);
+  }
+
+  .trade-panel-section {
+    padding: 8px 10px;
+  }
+
+  .order-entry {
+    min-width: unset;
+  }
+
+  .order-btn {
+    height: 48px;
   }
 
   .trade-log {
     display: none;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+    gap: 1px 0;
+  }
+
+  /* Equity curve */
+  .equity-header {
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+
+  /* Resize handle: bigger touch target */
+  .resize-handle {
+    height: 12px;
+  }
+
+  /* Modals */
+  .modal-dialog {
+    min-width: unset;
+    width: calc(100vw - 24px);
+    max-height: 90vh;
+    margin: 12px;
+  }
+
+  /* File drop */
+  .file-drop-area {
+    padding: 32px 20px;
+    width: 100%;
+  }
+
+  .file-drop-title {
+    font-size: 14px;
+  }
+
+  /* Risk management inputs: touch-friendly */
+  .risk-input {
+    height: 28px;
+    font-size: 13px;
+  }
+
+  .risk-select {
+    height: 28px;
+  }
+
+  .size-input {
+    height: 34px;
+    font-size: 13px;
+  }
+
+  .size-btn {
+    height: 32px;
+  }
+
+  .flatten-btn {
+    height: 36px;
   }
 }
