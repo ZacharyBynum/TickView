@@ -1,0 +1,178 @@
+/* ============================================================================
+   TickView — Global Styles (TradingView Dark Theme)
+   ============================================================================ */
+
+:root {
+  /* Background hierarchy */
+  --bg-primary: #0a0a0a;
+  --bg-secondary: #111111;
+  --bg-tertiary: #1a1a1a;
+  --bg-hover: #222222;
+  --bg-active: #2a2a2a;
+
+  /* Text hierarchy */
+  --text-primary: #d1d4dc;
+  --text-secondary: #787b86;
+  --text-tertiary: #5d606b;
+  --text-active: #ffffff;
+
+  /* Accent colors */
+  --accent-blue: #2962ff;
+  --accent-blue-hover: #1e53e5;
+  --accent-blue-bg: rgba(41, 98, 255, 0.12);
+
+  /* Bull / Bear */
+  --color-bull: #26a69a;
+  --color-bull-bg: rgba(38, 166, 154, 0.12);
+  --color-bear: #ef5350;
+  --color-bear-bg: rgba(239, 83, 80, 0.12);
+
+  /* Borders */
+  --border-primary: #1f1f1f;
+  --border-secondary: #2a2a2a;
+
+  /* Shadows */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --shadow-md: 0 4px 12px rgba(0, 0, 0, 0.4);
+  --shadow-lg: 0 8px 24px rgba(0, 0, 0, 0.5);
+
+  /* Spacing */
+  --toolbar-height: 44px;
+  --bottom-panel-height: 200px;
+
+  /* Typography */
+  --font-sans: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-mono: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+
+  /* Transitions */
+  --transition-fast: 100ms ease;
+  --transition-normal: 200ms ease;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+body {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  line-height: 1.4;
+  color: var(--text-primary);
+  background: var(--bg-primary);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  user-select: none;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--bg-active);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--text-tertiary);
+}
+
+/* Selection */
+::selection {
+  background: var(--accent-blue-bg);
+  color: var(--text-active);
+}
+
+/* Focus outline */
+:focus-visible {
+  outline: 1px solid var(--accent-blue);
+  outline-offset: -1px;
+}
+
+/* Button reset */
+button {
+  font-family: inherit;
+  font-size: inherit;
+  border: none;
+  background: none;
+  color: inherit;
+  cursor: pointer;
+  outline: none;
+}
+
+/* Input reset */
+input,
+select {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+  background: none;
+  border: none;
+  outline: none;
+}
+
+/* Disable text selection on interactive elements */
+button,
+[role="button"],
+input[type="range"] {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Tooltip base */
+[data-tooltip] {
+  position: relative;
+}
+
+[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: calc(100% + 6px);
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 4px 8px;
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  font-size: 11px;
+  white-space: nowrap;
+  border-radius: 4px;
+  border: 1px solid var(--border-primary);
+  box-shadow: var(--shadow-md);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-fast);
+  z-index: 1000;
+}
+
+[data-tooltip]:hover::after {
+  opacity: 1;
+}
+
+/* Monospace utility */
+.mono {
+  font-family: var(--font-mono);
+}
+
+/* Color utilities */
+.text-bull { color: var(--color-bull); }
+.text-bear { color: var(--color-bear); }
+.text-muted { color: var(--text-secondary); }
+.text-accent { color: var(--accent-blue); }
