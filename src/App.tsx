@@ -932,6 +932,7 @@ export default function App() {
         <TradePanel
           position={position}
           trades={trades}
+          roundTrips={roundTrips}
           stats={stats}
           instrument={NQ_CONFIG}
           currentPrice={currentPrice}

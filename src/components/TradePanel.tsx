@@ -1,5 +1,5 @@
 import { useState, useMemo, useRef, useCallback } from 'react';
-import type { Position, Trade, TradeStats, InstrumentConfig } from '../types';
+import type { Position, Trade, TradeStats, InstrumentConfig, RoundTrip } from '../types';
 
 type EquityXAxis = 'trades' | 'daily';
 
@@ -292,6 +292,7 @@ export interface OrderConfig {
 interface TradePanelProps {
   position: Position;
   trades: Trade[];
+  roundTrips: RoundTrip[];
   stats: TradeStats;
   instrument: InstrumentConfig;
   currentPrice: number;
@@ -316,9 +317,26 @@ function formatTradeTime(timestamp: number): string {
   return `${hh}:${mm}:${ss}`;
 }
 
+function formatDate(timestamp: number): string {
+  const d = new Date(timestamp);
+  return `${d.getMonth() + 1}/${d.getDate()}`;
+}
+
+function formatDuration(ms: number): string {
+  const totalSec = Math.floor(ms / 1000);
+  if (totalSec < 60) return `${totalSec}s`;
+  const min = Math.floor(totalSec / 60);
+  const sec = totalSec % 60;
+  if (min < 60) return `${min}m${sec > 0 ? ` ${sec}s` : ''}`;
+  const hr = Math.floor(min / 60);
+  const rm = min % 60;
+  return `${hr}h${rm > 0 ? ` ${rm}m` : ''}`;
+}
+
 export default function TradePanel({
   position,
   trades,
+  roundTrips,
   stats,
   instrument,
   currentPrice,
@@ -565,22 +583,45 @@ export default function TradePanel({
         </div>
         {bottomView === 'log' ? (
           <div className="trade-log">
-            {[...trades].reverse().map((trade) => {
-              const pnl = trade.pnl != null ? formatPnl(trade.pnl) : null;
-              return (
-                <div key={trade.id} className="trade-log-entry">
-                  <span className={`trade-log-side ${trade.side}`}>
-                    {trade.side.toUpperCase()}
-                  </span>
-                  <span className="trade-log-price">{trade.price.toFixed(2)}</span>
-                  <span className="trade-log-size">x{trade.size}</span>
-                  <span className="trade-log-time">{formatTradeTime(trade.timestamp)}</span>
-                  {pnl && (
-                    <span className={`trade-log-pnl ${pnl.className}`}>{pnl.text}</span>
-                  )}
-                </div>
-              );
-            })}
+            <table className="trade-log-table">
+              <thead>
+                <tr>
+                  <th>#</th>
+                  <th>Side</th>
+                  <th>Entry</th>
+                  <th>Exit</th>
+                  <th>Qty</th>
+                  <th>P&L</th>
+                  <th>MFE</th>
+                  <th>MAE</th>
+                  <th>Held</th>
+                  <th>Date</th>
+                  <th>Time</th>
+                </tr>
+              </thead>
+              <tbody>
+                {[...roundTrips].reverse().map((rt, i) => {
+                  const pnl = formatPnl(rt.pnl);
+                  const mfe = formatPnl(rt.mfe);
+                  const mae = formatPnl(rt.mae);
+                  return (
+                    <tr key={roundTrips.length - i}>
+                      <td className="trade-log-num">{roundTrips.length - i}</td>
+                      <td className={`trade-log-side ${rt.side}`}>{rt.side === 'long' ? 'LONG' : 'SHORT'}</td>
+                      <td>{rt.entryPrice.toFixed(2)}</td>
+                      <td>{rt.exitPrice.toFixed(2)}</td>
+                      <td>{rt.size}</td>
+                      <td className={pnl.className}>{pnl.text}</td>
+                      <td className="bull">{mfe.text}</td>
+                      <td className="bear">{mae.text}</td>
+                      <td>{formatDuration(rt.holdingMs)}</td>
+                      <td>{formatDate(rt.entryTime)}</td>
+                      <td>{formatTradeTime(rt.entryTime)}</td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
           </div>
         ) : (
           <EquityCurve trades={trades} />

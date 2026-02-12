@@ -657,54 +657,57 @@
 /* Trade log */
 .trade-log {
   flex: 1;
-  overflow-y: auto;
+  overflow: auto;
   min-width: 280px;
 }
 
-.trade-log-entry {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  padding: 3px 0;
+.trade-log-table {
+  width: 100%;
+  border-collapse: collapse;
   font-size: 11px;
+  font-family: var(--font-mono);
+  white-space: nowrap;
+}
+
+.trade-log-table thead {
+  position: sticky;
+  top: 0;
+  z-index: 1;
+}
+
+.trade-log-table th {
+  background: var(--bg-secondary);
+  color: var(--text-tertiary);
+  font-weight: 500;
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+  padding: 4px 6px;
+  text-align: right;
+  border-bottom: 1px solid var(--border-primary);
+}
+
+.trade-log-table th:nth-child(1),
+.trade-log-table th:nth-child(2) { text-align: left; }
+
+.trade-log-table td {
+  padding: 3px 6px;
+  text-align: right;
+  color: var(--text-primary);
   border-bottom: 1px solid var(--bg-primary);
 }
 
-.trade-log-side {
-  font-weight: 600;
-  font-size: 10px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  width: 30px;
-}
+.trade-log-table td:nth-child(1),
+.trade-log-table td:nth-child(2) { text-align: left; }
 
-.trade-log-side.buy { color: var(--color-bull); }
-.trade-log-side.sell { color: var(--color-bear); }
+.trade-log-num { color: var(--text-tertiary); }
 
-.trade-log-price {
-  font-family: var(--font-mono);
-  color: var(--text-primary);
-  min-width: 70px;
-}
+.trade-log-side.long { color: var(--color-bull); font-weight: 600; }
+.trade-log-side.short { color: var(--color-bear); font-weight: 600; }
 
-.trade-log-size {
-  color: var(--text-tertiary);
-  font-family: var(--font-mono);
-}
-
-.trade-log-time {
-  color: var(--text-tertiary);
-  font-family: var(--font-mono);
-  font-size: 10px;
-  margin-left: auto;
-}
-
-.trade-log-pnl {
-  font-family: var(--font-mono);
-  font-weight: 600;
-  min-width: 60px;
-  text-align: right;
-}
+.trade-log-table .bull { color: var(--color-bull); }
+.trade-log-table .bear { color: var(--color-bear); }
+.trade-log-table .neutral { color: var(--text-tertiary); }
 
 /* --- File Drop Zone --- */
 
